@@ -35,7 +35,7 @@ const RegisterPage = () => {
       }}
       validationSchema={validate}
       onSubmit={async (values) => {
-        const res = await postData("/users/login", {
+        const res = await postData("/users/register", {
           name: values.name,
           email: values.email,
           password: values.password,
