@@ -1,0 +1,51 @@
+body {
+  background: #eee;
+}
+
+.date {
+  font-size: 11px;
+}
+
+.comments {
+  width: 100%;
+  min-width: 300px;
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  h2 {
+    font-size: 2.3em;
+    margin-bottom: 0;
+  }
+}
+
+.fs-12 {
+  font-size: 12px;
+}
+
+.liked {
+  color: blue;
+}
+
+.shadow-none {
+  box-shadow: none;
+}
+
+.name {
+  color: #007bff;
+}
+
+.cursor:hover {
+  color: blue;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.textarea {
+  resize: none;
+}
+
+.post-text {
+  font-size: 1rem;
+}
