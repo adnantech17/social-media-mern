@@ -36,6 +36,8 @@ app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/posts", posts);
 
+console.log(process.env.NODE_ENV == "production");
+console.log(process.env.NODE_ENV);
 //Server Static assets if in production
 if (process.env.NODE_ENV === "production") {
   //Set Static Folder
