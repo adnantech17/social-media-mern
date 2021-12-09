@@ -56,12 +56,6 @@ function App() {
                 <Redirect to="/login" />
               )}
             </Route>
-            {/*<Route path="/update-recipe">
-              {login ? <UpdateRecipe /> : <Redirect to="/login" />}
-            </Route>
-             <Route path="/recipe/:id">
-              {login ? <Single /> : <Redirect to="/login" />}
-            </Route> */}
             <Route path="/login">
               {isLogin(login, setLogin) ? <Redirect to="/" /> : <LoginPage />}
             </Route>

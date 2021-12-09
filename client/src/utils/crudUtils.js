@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getData = async (url) => {
   try {
-    var data = await axios.get(url);
+    var data = await axios.get("/api" + url);
     return data;
   } catch (err) {
     console.log(err);
@@ -12,7 +12,7 @@ export const getData = async (url) => {
 
 export const postData = async (url, data) => {
   try {
-    var res = await axios.post(url, data);
+    var res = await axios.post("/api" + url, data);
     return res;
   } catch (err) {
     console.log(err);
