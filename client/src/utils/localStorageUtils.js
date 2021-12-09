@@ -14,10 +14,13 @@ export const setToken = (token) => {
 
 export const tokenExpired = () => {
   let token = getToken();
+
+  if (!token) return true;
   const { exp } = jwtDecode(token);
 
   const expirationTime = exp * 1000;
   if (Date.now() >= expirationTime) {
+    removeToken();
     return true;
   }
 
