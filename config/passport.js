@@ -7,7 +7,7 @@ const keys = require("../config/keys");
 
 const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
-opts.secretOrKey = "process.env.SECRET_OR_KEY";
+opts.secretOrKey = keys.secretOrKey;
 
 module.exports = (passport) => {
   passport.use(
