@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import Post from "../../Components/post/Post";
 import PostForm from "../../Components/postform/PostForm";
 import { getData } from "../../utils/crudUtils";
+import ClipLoader from "react-spinners/ClipLoader";
+import "./dashboard.scss";
 
 const Dashboard = () => {
   const [posts, setPosts] = useState(null);
@@ -16,9 +18,11 @@ const Dashboard = () => {
   return (
     <div>
       <PostForm />
-      <div className="container">
+      <div className="container page">
         {posts === null ? (
-          <h1>Loading</h1>
+          <div className="loading">
+            <ClipLoader loading={posts === null} size={150} />
+          </div>
         ) : (
           posts.map((post) => (
             <Post post={post} key={post._id} refetch={getPostData} />

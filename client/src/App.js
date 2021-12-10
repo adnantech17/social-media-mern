@@ -19,9 +19,13 @@ import Dashboard from "./Pages/dashboard/Dashboard";
 import { getData } from "./utils/crudUtils";
 import { isLogin } from "./utils/localStorageUtils";
 import Users from "./Pages/users/Users";
+import CreateProfile from "./Pages/profile/CreateProfile";
+import { LoadingContext } from "./Context/LoadingContext";
+import ClipLoader from "react-spinners/ClipLoader";
 
 function App() {
-  const [login, setLogin, user, setUser] = useContext(LoginContext);
+  const [login, setLogin, , setUser] = useContext(LoginContext);
+  const { loading } = useContext(LoadingContext);
 
   useEffect(() => {
     const getUser = async () => {
@@ -35,43 +39,58 @@ function App() {
   return (
     <Router>
       <Topbar />
-
-      <div className="App">
-        <div className="page">
-          <Switch>
-            <Route path="/users">
-              {isLogin(login, setLogin) ? <Users /> : <Redirect to="/login" />}
-            </Route>
-            <Route path="/profile">
-              {isLogin(login, setLogin) ? (
-                <Profile />
-              ) : (
-                <Redirect to="/login" />
-              )}
-            </Route>
-            <Route path="/update-profile">
-              {isLogin(login, setLogin) ? (
-                <EditProfile />
-              ) : (
-                <Redirect to="/login" />
-              )}
-            </Route>
-            <Route path="/login">
-              {isLogin(login, setLogin) ? <Redirect to="/" /> : <LoginPage />}
-            </Route>
-            <Route path="/register">
-              <RegisterPage />
-            </Route>
-            <Route exact path="/">
-              {isLogin(login, setLogin) ? (
-                <Dashboard />
-              ) : (
-                <Redirect to="/login" />
-              )}
-            </Route>
-          </Switch>
+      {loading ? (
+        <ClipLoader loading={loading} size={150} />
+      ) : (
+        <div className="App">
+          <div className="page">
+            <Switch>
+              <Route path="/users">
+                {isLogin(login, setLogin) ? (
+                  <Users />
+                ) : (
+                  <Redirect to="/login" />
+                )}
+              </Route>
+              <Route path="/profile">
+                {isLogin(login, setLogin) ? (
+                  <Profile />
+                ) : (
+                  <Redirect to="/login" />
+                )}
+              </Route>
+              <Route path="/update-profile">
+                {isLogin(login, setLogin) ? (
+                  <EditProfile />
+                ) : (
+                  <Redirect to="/login" />
+                )}
+              </Route>
+              <Route path="/create-profile">
+                {isLogin(login, setLogin) ? (
+                  <CreateProfile />
+                ) : (
+                  <Redirect to="/login" />
+                )}
+              </Route>
+              <Route path="/login">
+                {isLogin(login, setLogin) ? <Redirect to="/" /> : <LoginPage />}
+              </Route>
+              <Route path="/register">
+                <RegisterPage />
+              </Route>
+              <Route exact path="/">
+                {isLogin(login, setLogin) ? (
+                  <Dashboard />
+                ) : (
+                  <Redirect to="/login" />
+                )}
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
+      )}
+
       <Footer />
     </Router>
   );

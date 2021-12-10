@@ -5,7 +5,6 @@ import { Form, Formik } from "formik";
 import { TextField } from "../../Components/TextField/TextField";
 import * as Yup from "yup";
 import { postData } from "../../utils/crudUtils";
-import setAuthToken from "../../utils/setAuthToken";
 
 const RegisterPage = () => {
   const [err, setErr] = useState("");

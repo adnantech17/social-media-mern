@@ -14,7 +14,7 @@ const Users = () => {
     getProfileData();
   }, []);
   return (
-    <div className="container">
+    <div className="container page">
       <div className="users">
         {profiles &&
           profiles.map((profile) => (
