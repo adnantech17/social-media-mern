@@ -1,14 +1,19 @@
 import React from "react";
 import "./tables.scss";
+import Moment from "react-moment";
 
-const Experience = () => {
+const Experience = ({ experience }) => {
   return (
     <tr>
-      <td>title</td>
-      <td>company</td>
-      <td>location</td>
-      <td>from</td>
-      <td>to</td>
+      <td>{experience.title}</td>
+      <td>{experience.company}</td>
+      <td>{experience.location}</td>
+      <td>
+        <Moment format="YYYY/MM/DD">{experience.date}</Moment>
+      </td>
+      <td>
+        <Moment format="YYYY/MM/DD">{experience.date}</Moment>
+      </td>
     </tr>
   );
 };

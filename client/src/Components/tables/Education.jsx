@@ -1,14 +1,19 @@
 import React from "react";
 import "./tables.scss";
+import Moment from "react-moment";
 
-const Education = () => {
+const Education = ({ education }) => {
   return (
     <tr>
-      <td>School</td>
-      <td>Degree</td>
-      <td>Subject</td>
-      <td>From</td>
-      <td>To</td>
+      <td>{education.school}</td>
+      <td>{education.degree}</td>
+      <td>{education.fieldofstudy}</td>
+      <td>
+        <Moment format="YYYY/MM/DD">{education.date}</Moment>
+      </td>
+      <td>
+        <Moment format="YYYY/MM/DD">{education.date}</Moment>
+      </td>
     </tr>
   );
 };

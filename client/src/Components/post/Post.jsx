@@ -6,6 +6,7 @@ import { postData } from "../../utils/crudUtils";
 import { LoginContext } from "../../Context/LoginContext";
 import { Form, Formik } from "formik";
 import { TextField } from "../TextField/TextField";
+import Moment from "react-moment";
 
 const Post = ({ post, refetch }) => {
   const [, , user] = useContext(LoginContext);
@@ -25,57 +26,60 @@ const Post = ({ post, refetch }) => {
   return (
     <div>
       <div className="container">
-        <div class="bg-white p-2">
-          <div class="d-flex flex-row user-info">
+        <div className="bg-white p-2">
+          <div className="user-info">
             <img
-              class="rounded-circle"
-              src="https://i.imgur.com/RpzrMR2.jpg"
+              className="rounded-circle"
+              src="https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1202490554?k=20&m=1202490554&s=612x612&w=0&h=Pkb9bPY7CT5whOt0yZDzGivGBs_CW2fAs0btjFaHCOg="
               width="40"
+              height="40"
             />
-            <div class="d-flex flex-column justify-content-start ml-2">
-              <span class="d-block font-weight-bold name">{post.name}</span>
-              <span class="date text-black-50">{post.date}</span>
+            <div className="poster-title">
+              <span>{post.name}</span>
+              <p className="date text-black-50timestamp">
+                <Moment fromNow>{post.date}</Moment>
+              </p>
             </div>
           </div>
-          <div class="mt-1">
-            <p class="post-text">{post.text}</p>
+          <div className="mt-1">
+            <p className="post-text">{post.text}</p>
           </div>
         </div>
-        <div class="bg-white">
-          <div class="d-flex flex-row fs-12">
+        <div className="bg-white">
+          <div className="d-flex flex-row fs-12">
             {likedOrNot() ? (
               <div
-                class="liked p-2 cursor"
+                className="liked p-2 cursor"
                 onClick={async () => {
                   const res = await postData("/posts/unlike/" + post._id, {});
                   console.log(res, "Res");
                   refetch();
                 }}
               >
-                <i class="fa fa-thumbs-up"></i>
-                <span class="ml-1">&nbsp;({post.likes.length})</span>
+                <i className="fa fa-thumbs-up"></i>
+                <span className="ml-1">&nbsp;({post.likes.length})</span>
               </div>
             ) : (
               <div
-                class="like p-2 cursor"
+                className="like p-2 cursor"
                 onClick={async () => {
                   const res = await postData("/posts/like/" + post._id, {});
                   console.log(res, "Res");
                   refetch();
                 }}
               >
-                <i class="fa fa-thumbs-up"></i>
-                <span class="ml-1">&nbsp;({post.likes.length})</span>
+                <i className="fa fa-thumbs-up"></i>
+                <span className="ml-1">&nbsp;({post.likes.length})</span>
               </div>
             )}
 
-            <div class="p-2">
-              <i class="fa fa-comments"></i>
-              <span class="ml-1">({post.comments.length})&nbsp;</span>
+            <div className="p-2">
+              <i className="fa fa-comments"></i>
+              <span className="ml-1">({post.comments.length})&nbsp;</span>
             </div>
           </div>
         </div>
-        <div class="coment-bottom bg-white p-2 px-4">
+        <div className="coment-bottom bg-white p-2 px-4">
           <Formik
             initialValues={{
               text: "",
@@ -92,7 +96,7 @@ const Post = ({ post, refetch }) => {
             }}
           >
             {(formik) => (
-              <div class="form-group container">
+              <div className="form-group container">
                 <Form
                   className="login-form"
                   onSubmit={(e) => {
@@ -106,7 +110,7 @@ const Post = ({ post, refetch }) => {
                     name="text"
                   />
                   <div className="d-flex">
-                    <button class="btn btn-info ms-auto">Submit</button>
+                    <button className="btn btn-info ms-auto">Submit</button>
                   </div>
                 </Form>
               </div>

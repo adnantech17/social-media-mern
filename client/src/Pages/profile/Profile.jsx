@@ -5,9 +5,13 @@ import ClipLoader from "react-spinners/ClipLoader";
 import "./profile.scss";
 import Experience from "../../Components/tables/Experience";
 import Education from "../../Components/tables/Education";
+import ExperienceModal from "../../Components/modals/ExperienceModal";
+import EducationModal from "../../Components/modals/EducationModal";
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
+  const [eduModalOpen, setEduModalOpen] = useState(false);
+  const [expModalOpen, setExpModalOpen] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -30,7 +34,7 @@ const Profile = () => {
           <div className="sidenav">
             <div className="profile">
               <img
-                src="https://imdezcode.files.wordpress.com/2020/02/imdezcode-logo.png"
+                src="https://media.istockphoto.com/vectors/person-gray-photo-placeholder-man-vector-id1202490554?k=20&m=1202490554&s=612x612&w=0&h=Pkb9bPY7CT5whOt0yZDzGivGBs_CW2fAs0btjFaHCOg="
                 alt=""
                 width="100"
                 height="100"
@@ -190,16 +194,20 @@ const Profile = () => {
                 </tr>
               </thead>
               <tbody>
-                <Experience />
-                <Experience />
-                <Experience />
+                {profile.experience.map((exp) => (
+                  <Experience experience={exp} />
+                ))}
                 <tr>
                   <th></th>
                   <th></th>
                   <th></th>
                   <th></th>
                   <th>
-                    <button class="btn btn-success" type="button">
+                    <button
+                      class="btn btn-success"
+                      type="button"
+                      onClick={() => setExpModalOpen(true)}
+                    >
                       + Add New
                     </button>
                   </th>
@@ -217,16 +225,20 @@ const Profile = () => {
                 </tr>
               </thead>
               <tbody>
-                <Education />
-                <Education />
-                <Education />
+                {profile.education.map((edu) => (
+                  <Education education={edu} />
+                ))}
                 <tr>
                   <th></th>
                   <th></th>
                   <th></th>
                   <th></th>
                   <th>
-                    <button class="btn btn-success" type="button">
+                    <button
+                      class="btn btn-success"
+                      type="button"
+                      onClick={() => setEduModalOpen(true)}
+                    >
                       + Add New
                     </button>
                   </th>
@@ -236,6 +248,11 @@ const Profile = () => {
           </div>
         </div>
       )}
+      <ExperienceModal
+        setModalOpen={setExpModalOpen}
+        modalOpen={expModalOpen}
+      />
+      <EducationModal setModalOpen={setEduModalOpen} modalOpen={eduModalOpen} />
     </div>
   );
 };
